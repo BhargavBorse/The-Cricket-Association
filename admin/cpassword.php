@@ -81,8 +81,12 @@ session_start();
                         <input type="text" name="username" class="form-control" id="username" required>
                         <br>
                         <label>Current Password</label>
-                        <input type="password" name="current_pswd" class="form-control" required>
+                        <input type="password" name="old_pswd" class="form-control" required>
                         <br>
+                        <label>New Password</label>
+                        <input type="password" name="new_pswd" class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" id="password" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+                        <br>
+                        
                         <input type="submit" name="submit" value="VERIFY" class="btn btn-outline-info">  
                         <!-- <a href="fp.php" class="nav-link btn-outline-info">Forgot Password</a> -->
                     </form>

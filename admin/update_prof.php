@@ -73,7 +73,7 @@ session_start();
                     <!-- <h1 style="color: white">Bowling Statistics</h1> -->
                 </div>
                 <span style="background-color: rgba(34, 31, 32, 0.87); color: white;">
-                    <form action="update_form.php" method="POST" style="padding: 50px; background-color: rgba(34, 31, 32, 0.87); color: white;">
+                    <form action="sql/update_prof.php" method="POST" style="padding: 50px; background-color: rgba(34, 31, 32, 0.87); color: white;">
                         <h3>Update Profile</h3>
                         <?php
                             $db=mysqli_connect('localhost','root','','cricket_assoc') or die("Error 404 not found");
@@ -89,15 +89,15 @@ session_start();
                         <!-- <p>And improve your profile</p> -->
                         <hr class="border-bottom">
                         <label>User Name: </label>
-                        <?php echo "<h4> &nbsp;&nbsp;&nbsp;".$d['username']."</h4>" ?>
+                            <input type="text" name="name" class="form-control" id="name" value="<?php echo $d['username'] ?>" disabled>
                         <br>
                         <label>Phone Number</label>
-                        <?php echo "<h4> &nbsp;&nbsp;&nbsp;".$d['phone_number']."</h4>" ?>
+                            <input type="number" name="pno" id="pno" class="form-control" value="<?php echo $d['phone_number']?>">
                         <br>
                         <label>Email</label>
-                        <?php echo "<h4> &nbsp;&nbsp;&nbsp;".$d['email']."</h4>" ?>
+                            <input type="email" name="email" id="email" class="form-control" value="<?php echo $d['email']?>">
                         <br>
-                        <input type="submit" value="CHANGE" class="btn btn-outline-danger">  
+                        <input type="submit" value="UPDATE" class="btn btn-outline-danger">  
                         <!-- <a href="fp.php" class="nav-link btn-outline-info">Forgot Password</a> -->
                     </form>
                             <?php } ?>

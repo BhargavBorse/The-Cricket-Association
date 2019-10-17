@@ -45,7 +45,7 @@
                         <p>Credentials Verified</p>
                             <label>Enter new password</label>
                             <!-- <input type="text" name="username" value=""> -->
-                            <input type="password" name="new_pswd" class="form-control" id="password" required>
+                            <input type="password" name="new_pswd" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" class="form-control" id="password" required>
                             <br>
                             <input type="submit" name="submit" value="UPDATE" class="btn btn-block btn-outline-info"> 
                             <!-- <a href="forgot_pswd.php" name="forgot" class="btn btn-block btn-outline-info">FORGOT PASSWORD </a> -->

@@ -97,7 +97,8 @@
     <div class="row">
         <div class="container">
             <div class="col-lg-12">
-            <input type="button" class="btn btn-danger my-2 my-sm-0" style="width: 20%;" onclick="printDiv('printableArea')" value="Print / Generate PDF" />
+            <a href="index1.php" class="btn btn-danger my-2 my-sm-0">Print / Generate PDF</a>
+            <!-- <input type="button" class="btn btn-danger my-2 my-sm-0" style="width: 20%;" onclick="printDiv('printableArea')" value="Print / Generate PDF" /> -->
                 <div class="card-deck mb-3">
                     <div class="card border-info">
                         <div class="card-body table-responsive table-hover" id="printableArea">

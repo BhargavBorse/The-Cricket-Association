@@ -81,7 +81,7 @@ session_start();
                         <p>Enter your New Password</p>
                         <hr class="border-bottom">
                         <label>New Password</label>
-                        <input type="password" name="new_pswd" class="form-control" id="password" required>
+                        <input type="password" name="new_pswd" class="form-control" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
                         <br>
                         <input type="submit" value="CHANGE" class="btn btn-outline-danger">  
                         <!-- <a href="fp.php" class="nav-link btn-outline-info">Forgot Password</a> -->

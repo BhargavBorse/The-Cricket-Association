@@ -49,7 +49,8 @@
                             <input type="password" name="password" class="form-control" id="password" required> <br>
                             <input type="submit" name="submit" value="LOGIN" class="btn btn-block btn-outline-info"> 
                             <a href="forgot_pswd.php" name="forgot" class="btn btn-block btn-outline-info">FORGOT PASSWORD </a>
-                            <!-- <a href="fp.php" class="nav-link btn-outline-info">Forgot Password</a> -->
+                            
+                            <a href="p_reg.php" class="btn btn-block btn-outline-info">Not registered yet?</a>
                         </form>
                     </span>
                 </div>

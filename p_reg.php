@@ -26,6 +26,31 @@
             background-image: url(bg--1.png);
         }
     </style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>	
+<script>
+    $(document).ready(function(){
+
+        $("#dob").change(function(){
+           var value = $("#dob").val();
+            var dob = new Date(value);
+            var today = new Date();
+            var age = Math.floor((today-dob) / (365.25 * 24 * 60 * 60 * 1000));
+            if(isNaN(age)) {
+
+            // will set 0 when value will be NaN
+             age=0;
+
+            }
+            else{
+              age=age;
+            }
+            $('#age').val(age);
+
+        });
+
+    });
+    </script>
 </head>
 
 <body>         
@@ -36,9 +61,10 @@
                 <div class="d-flex justify-content-center">
                     <h3 class="font-weight-normal">The Cricket Association</h3>
                 </div>
-                <span class="border" style="background-color: rgba(34, 31, 32, 0.87); color: white;">
-                    <form action="sql/reg.php" method="POST" style="padding: 50px; background-color: rgba(34, 31, 32, 0.87); color: white;">
+                <span style="background-color: rgba(34, 31, 32, 0.87); color: white;"><br>
+                    <form action="p_reg.php" method="POST" style="padding: 50px; background-color: rgba(34, 31, 32, 0.87); color: white;">
                         <h3>Register Here</h3>
+                        <a href="p_reg.php" class="btn btn-outline-info">Already registered? Click to Login</a>
                         <hr class="border-bottom">
                         <label>Player Name</label>
                         <input type="text" name="name" class="form-control" id="username" required>
@@ -67,10 +93,10 @@
                         </select>
                         <br>
                         <label>DOB</label>
-                        <input type="date" name="date" class="form-control" required>
+                        <input type="date" name="date" id="dob" class="form-control" placeholder="yyyy/mm/dd" required>
                         <br>
                         <label>Age</label>
-                        <input type="number" name="year" class="form-control" required>
+                        <input type="text" name="year" id="age" class="form-control" readonly>
                         <br>
                         <label>User Name</label>
                         <input type="text" name="username" class="form-control" required>
@@ -97,5 +123,64 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
     crossorigin="anonymous"></script>
 </body>
-
 </html>
+
+<?php
+
+$db=mysqli_connect('localhost','root','','cricket_assoc') or die("Error 404 not found");
+
+if($_SERVER['REQUEST_METHOD']=='POST')
+{
+    $player_name=$_POST['name'];
+    $gender=$_POST['gender'];
+    $email=$_POST['email'];
+    $contact=$_POST['phone_no'];
+    $game=$_POST['game'];
+    $role=$_POST['role'];
+    $dob=$_POST['date'];
+    $year=$_POST['year'];
+    $username=$_POST['username'];
+    $password=$_POST['password'];
+    $cpassword=$_POST['cpassword'];
+
+    $fetch = "SELECT * FROM req_details username='$username'";
+                    
+    $m = mysqli_query($db, $fetch);
+    
+    if(mysqli_num_rows($m)<0)
+    {
+
+    if($year>18)
+    {
+    if($password == $cpassword)
+    {
+    $k = "INSERT INTO req_details (player_name, gender, email, contact, game, role, dob, year, username, password, status) VALUES ('$player_name','$gender','$email','$contact','$game','$role','$dob','$year','$username','$password', 'inactive')";
+    
+    if(mysqli_query($db,$k))
+    {
+        // echo "Done";
+        header("location:../p_success.php");            
+    }
+    else {
+        echo "error ". mysqli_error($db);
+    }
+    
+}
+else{
+    // echo "Passwords not matched! Go Back and try again <a href='../p_reg.php'>Back</a>" ;
+    echo "<script> alert('Passwords not matched! Go Back and try again'); </script>";
+}
+    }
+    else{
+        // echo "Age must be greater than 18";
+        echo "<script> alert('Age must be greater than 18'); </script>";
+    }
+}else{
+    // echo "Age must be greater than 18";
+    echo "<script> alert('username'); </script>";
+}
+
+}
+    
+
+?>

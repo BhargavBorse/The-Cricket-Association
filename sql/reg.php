@@ -16,6 +16,8 @@ if($_SERVER['REQUEST_METHOD']=='POST')
     $password=$_POST['password'];
     $cpassword=$_POST['cpassword'];
 
+    if($year>=18)
+    {
     if($password == $cpassword)
     {
     $k = "INSERT INTO req_details (player_name, gender, email, contact, game, role, dob, year, username, password, status) VALUES ('$player_name','$gender','$email','$contact','$game','$role','$dob','$year','$username','$password', 'inactive')";
@@ -28,9 +30,14 @@ if($_SERVER['REQUEST_METHOD']=='POST')
     else {
         echo "error ". mysqli_error($db);
     }
+    
 }
 else{
     echo "Passwords not matched! Go Back and try again <a href='../p_reg.php'>Back</a>" ;
 }
+    }
+    else{
+        echo "Age must be greater than 18";
+    }
 }
 ?>

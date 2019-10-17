@@ -81,7 +81,7 @@ session_start();
                         <p>And improve your profile</p>
                         <hr class="border-bottom">
                         <label>Player Name</label>
-                        <input type="text" name="name" class="form-control" id="username" required>
+                        <input type="text" name="name" value="<?php echo $_SESSION['username']; ?>" class="form-control" id="username" readonly>
                         <br>
                         <label>Level</label>
                         <select name="level" id="level" class="form-control" required>

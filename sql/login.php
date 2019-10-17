@@ -17,7 +17,7 @@
         }
         else
         {
-            echo"<script> alert('Wrong Credentials or request is not accepted yet! Please try again.') </script>";
+            echo"<script> alert('Invalid Credentials or request is not accepted yet! Please try again.') </script>";
             echo "<a href='../p_login.php'> <h2>CLICK TO GO BACK </h2></a>";
             // $nex = "Invalid Credentials!";
             // header("location: login.php?msg=$nex");

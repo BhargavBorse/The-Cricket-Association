@@ -59,8 +59,12 @@ session_start();
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Select Players</h5>
-                        <form action="sql/sort_player.php" method="POST">
+                    <h5 class="card-title">
+                        <a href="sort_player.php">View Runs </a>| 
+                        <a href="sort_player_bowl.php">View Bowling</a>
+                    </h5>
+                        <h5 class="card-title">Select Players to get Scored Run Details</h5>
+                        <form action="sort_player.php" method="POST">
                         <select name="player" class="form-control something" style="width: 20%;" id="player">
                             <option value="">------SELECT ONE------</option>
                             <?php
@@ -68,7 +72,7 @@ session_start();
 
                                     $sd = $_SESSION['username'];
                                     // echo $sd;
-                                    $fetch = "SELECT * FROM player_bat_det";
+                                    $fetch = "SELECT player_name FROM req_details where status='active'";
                     
                                     $m = mysqli_query($db, $fetch);
 
@@ -77,7 +81,8 @@ session_start();
                                         echo "<option value='". $d['player_name'] ."'>" .$d['player_name'] ."</option>" ;
                                     }
                             ?>
-                        </select>
+                        </select><br>
+                        <input type="submit" class="btn btn-outline-info" value="SHOW" name="submit">
                         </form>
                         <!-- <p class="card-text"><small class="text-muted">- Team TID</small></p> -->
                     </div>
@@ -96,14 +101,61 @@ session_start();
                         <div class="card-body table-responsive table-hover">
                             <table class="table">
                                 <tr>
+                                    <th>Player Name</th>
                                     <th>Level</th>
                                     <th>Run's Scored</th>
                                     <th>Date of Tournament</th>
                                 </tr>
+
+                                <?php
+                                    $db=mysqli_connect('localhost','root','','cricket_assoc') or die("Error 404 not found");
+
+                                    if(isset($_POST['submit']))
+                                    {
+                                    $player = $_POST['player'];
+                                    $sd = $_SESSION['username'];
+                                    // echo $sd;
+                                    $fetch = "SELECT * FROM player_bat_det where player_name='$player'";
+                    
+                                    $m = mysqli_query($db, $fetch);
+
+                                    while($d = mysqli_fetch_array($m))
+                                    {
+                                        // echo "<option value='". $d['player_name'] ."'>" .$d['player_name'] ."</option>" ;
+                                    
+                            ?>
                                 <tr>
-                                    <td></td>
+                                    <td>
+                                        <?php echo $d['player_name'] ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $d['level'] ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $d['run'] ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $d['date'] ?>
+                                    </td>
                                 </tr>
+                                <?php } } ?>
                             </table>
+                            <?php
+                                if(isset($_POST['submit']))
+                                {
+                                $player = $_POST['player'];
+                                $sd = $_SESSION['username'];
+                                // echo $sd;
+                                $fetch = "SELECT AVG(run) FROM player_bat_det where player_name='$player'";
+                
+                                $m = mysqli_query($db, $fetch);
+
+                                while($d = mysqli_fetch_array($m))
+                                {
+                                    echo "Average Runs of $player: ".$d['AVG(run)'];
+                                }
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>

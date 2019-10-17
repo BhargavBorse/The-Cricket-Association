@@ -24,6 +24,7 @@
     <style>
         body{
             background-image: url(bg--1.png);
+            overflow: hidden;
         }
     </style>
 </head>
@@ -36,9 +37,6 @@
                 <div class="d-flex justify-content-center">
                     <h3 class="font-weight-normal">The Cricket Association</h3>
                 </div>
-                <span class="border" style="background-color: rgba(34, 31, 32, 0.87); color: white;">
-                    
-                </span>
             </div>
             <div class="col-lg-2"></div>
         </div>

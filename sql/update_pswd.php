@@ -4,6 +4,7 @@
     $db=mysqli_connect('localhost','root','','cricket_assoc') or die("Error 404 not found");
 
     $update_pswd = $_POST['new_pswd'];
+    $update_pswd = $_POST['old_pswd'];
     $player_name = $_SESSION['username'];
     
     //  echo $id;
